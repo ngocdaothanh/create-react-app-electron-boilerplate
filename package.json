@@ -7,25 +7,29 @@
   "repository": "https://github.com/ngocdaothanh/create-react-app-electron-boilerplate",
   "main": "electron/main.js",
   "scripts": {
-    "start": "concurrently \"BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && npm run electron-start\"",
-    "react-start": "react-scripts start",
-    "react-build": "react-scripts build",
+    "start": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron-start\"",
+    "react-start": "BROWSER=none react-scripts start",
+    "react-build": "GENERATE_SOURCEMAP=false react-scripts build",
     "electron-start": "electron .",
+    "electron-bundle": "rollup --config rollup.config.js",
     "electron-pack": "electron-builder",
     "electron-dist": "electron-builder --dir"
   },
   "dependencies": {
     "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
     "electron": "^9.1.1",
     "electron-builder": "^22.8.0",
+    "react-scripts": "^3.4.1",
+    "rollup": "^2.23.0",
+    "rollup-plugin-terser": "^6.1.0",
     "wait-on": "^5.1.0"
   },
+  "homepage": "./",
   "build": {
     "appId": "my.app",
     "files": [
@@ -42,11 +46,19 @@
       }
     ]
   },
-  "homepage": "./",
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
