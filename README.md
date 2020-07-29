@@ -12,7 +12,7 @@ Reference:
 * `src/`: React source code
 * `rollup.config.js`: For [bundling](https://rollupjs.org/) source code in `electron/` to [public/electron.js](https://medium.com/@kitze/%EF%B8%8F-from-react-to-an-electron-app-ready-for-production-a0468ecb1da3)
 
-## Running the app in dev mode
+## Run the app in dev mode
 
 ```bash
 npm start
