@@ -18,7 +18,7 @@ Build the React app:
 npm run build
 ```
 
-- To package the React app:
+Package the Electron app:
 
 ```bash
 npm run electron-pack
@@ -26,17 +26,16 @@ npm run electron-pack
 
 The packaged application will be in the `dist` directory.
 
-Note: I only tested on Windows, so you might need to check the documentation of [electron-builder](https://www.electron.build/) and edit the `build` part of `package.json` is you want to build for other platforms.
+See the documentation of [electron-builder](https://www.electron.build/) and
+the `build` part of `package.json`.
 
-- To only get the unpacked version of the App, you can run:
+## Include files in the packaged app
 
-```bash
-npm run electron-dist
-```
+Put them in the `extraResources` directory.
 
-## Including files in the packaged app
-
-If you want to include files in the packaged application, you have to put them in the `extraResources` directory. Once packaged, the files can be found in the `resources/extraResources` directory of the packaged application (`Contents/Resources/extraResources` [for MacOS](https://www.electron.build/configuration/contents#extraresources)).
+Once packaged, the files can be found in the `resources/extraResources` directory
+of the packaged application (`Contents/Resources/extraResources`
+[for MacOS](https://www.electron.build/configuration/contents#extraresources)).
 
 To access this folder in your app you can do:
 
