@@ -1,5 +1,8 @@
 # Minimum Electron boilerplate based on create-react-app
 
+If you use TypeScript, see also:
+[create-react-app-electron-typescript-boilerplate](https://github.com/ngocdaothanh/create-react-app-electron-typescript-boilerplate)
+
 Reference:
 * [From React to an Electron app ready for production](https://medium.com/@kitze/%EF%B8%8F-from-react-to-an-electron-app-ready-for-production-a0468ecb1da3)
 * [Building an Electron application with create-react-app](https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c/)

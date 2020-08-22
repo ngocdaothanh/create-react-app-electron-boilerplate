@@ -1,5 +1,4 @@
-// Bundle source code in "electron" directory to one file at "public/electron.js".
-// See: https://medium.com/@kitze/%EF%B8%8F-from-react-to-an-electron-app-ready-for-production-a0468ecb1da3
+// Bundle files in `electron` directory to one file `build/electron.js`
 
 // Convert `require(...)` to `import '...'`, so they can be included the output file
 import commonjs from '@rollup/plugin-commonjs'
