@@ -7,7 +7,6 @@
 /coverage
 
 # production
-/public/electron*
 /build
 /dist
 

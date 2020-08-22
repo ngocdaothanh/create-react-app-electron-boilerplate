@@ -1,27 +1,46 @@
-const { app, BrowserWindow } = require('electron')
+const {app, BrowserWindow} = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
+
+const {initLogic} = require('./logic')
+
+const WIDTH = 900
+const HEIGHT = 680
+
+const DEV_URL = 'http://localhost:3000'
+const PRD_URL = `file://${path.join(__dirname, '../build/index.html')}`
 
 let mainWindow = null
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
+    width: WIDTH,
+    height: HEIGHT,
+
+    webPreferences: {
+      // Use `preload` instead of `nodeIntegration`:
+      // https://www.electronjs.org/docs/tutorial/security#2-do-not-enable-nodejs-integration-for-remote-content
+      //
+      // When we package the app for production, preload.js will be put in archive file app.asar,
+      // but Electron will still be able to load it:
+      // https://www.electronjs.org/docs/tutorial/application-packaging
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
-  mainWindow.setMenuBarVisibility(isDev)
-
-  mainWindow.loadURL(
-    isDev
-      ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  )
-
-  if (isDev) {
-    mainWindow.webContents.openDevTools()
-  }
 
   mainWindow.on('closed', () => (mainWindow = null))
+
+  mainWindow.setMenuBarVisibility(isDev)
+
+  mainWindow.loadURL(isDev ? DEV_URL : PRD_URL)
+
+  if (isDev) {
+    // Open Dev Tools in a separate window for simplicity; this may also be useful:
+    // https://stackoverflow.com/questions/53678438/dev-tools-size-and-position-in-electron
+    mainWindow.webContents.openDevTools({mode: 'detach'})
+  }
+
+  initLogic()
 }
 
 app.on('ready', createWindow)
